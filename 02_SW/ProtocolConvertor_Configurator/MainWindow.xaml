@@ -1,0 +1,219 @@
+﻿<Window x:Class="ProtocolConvertor_Configurator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProtocolConvertor_Configurator"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="510" Width="800" MinHeight="510" MinWidth="800">
+
+    <Grid>
+        <Grid x:Name="Grid_Header" HorizontalAlignment="Left" Height="36" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+            <Label x:Name="Label_AppTitle" Content="Protocol Convertor           CAN | I2C | LIN | RS232" HorizontalAlignment="Left" Margin="195,0,0,0" VerticalAlignment="Top" Width="378" FontWeight="Bold" FontSize="16"/>
+        </Grid>
+        <Grid x:Name="Grid_Left" HorizontalAlignment="Left" Height="358" Margin="10,51,0,0" VerticalAlignment="Top" Width="100">
+            <ListBox x:Name="ListBox_ProtocolsList" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" SelectionChanged="ListBox_ProtocolsList_SelectionChanged">
+                <ListBoxItem Content="CAN"/>
+                <ListBoxItem Content="I2C"/>
+                <ListBoxItem Content="LIN"/>
+                <ListBoxItem Content="RS232"/>
+            </ListBox>
+            <Label x:Name="Label_FTDIStatus" Content="FTDI Device&#xD;&#xA;Not Connected" HorizontalAlignment="Left" Margin="0,105,0,0" VerticalAlignment="Top" Width="100" Height="39" IsEnabled="False" Foreground="Black" FontWeight="Bold">
+                <Label.Background>
+                    <SolidColorBrush Color="Lime" Opacity="0.5"/>
+                </Label.Background>
+                <Label.BorderBrush>
+                    <SolidColorBrush Color="#FFDA2828" Opacity="0"/>
+                </Label.BorderBrush>
+            </Label>
+        </Grid>
+        <Grid x:Name="Grid_Content" Visibility ="Visible" Margin="115,51,10,0">
+            <Label x:Name="Label_ConfigurationProtocolName" Content=" Configuration Protocol" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="647" Background="#FFAAAAAA" FontWeight="Bold" BorderBrush="Black" BorderThickness="1"/>
+            <CheckBox x:Name="CheckBox_ProtocolEnable" Content="Enable" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,49,0,0"/>
+            <Grid x:Name="Grid_ProtocolContent_CAN" Visibility="Hidden" HorizontalAlignment="Left" Height="122" Margin="94,43,0,0" VerticalAlignment="Top" Width="563">
+                <Label Content="CAN Baud Rate" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27"/>
+                <ComboBox x:Name="ComboBox_CAN_Baud" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="CAN_20KBITS"/>
+                    <ComboBoxItem Content="CAN_50KBITS"/>
+                    <ComboBoxItem Content="CAN_80KBITS"/>
+                    <ComboBoxItem Content="CAN_100KBITS"/>
+                    <ComboBoxItem Content="CAN_125KBITS"/>
+                    <ComboBoxItem Content="CAN_200KBITS"/>
+                    <ComboBoxItem Content="CAN_250KBITS"/>
+                    <ComboBoxItem Content="CAN_500KBITS"/>
+                    <ComboBoxItem Content="CAN_800KBITS"/>
+                    <ComboBoxItem Content="CAN_1MBIT"/>
+                </ComboBox>
+
+            </Grid>
+            <Grid x:Name="Grid_ProtocolContent_I2C" Visibility="Hidden" HorizontalAlignment="Left" Height="122" Margin="94,43,0,0" VerticalAlignment="Top" Width="563">
+                <Label Content="Operation Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27"/>
+                <RadioButton x:Name="RadioBtn_I2C_Master" Content="Master" HorizontalAlignment="Left" Margin="105,6,0,0" VerticalAlignment="Top" IsChecked="True" Click="RadioBtn_I2C_Operation_Click"/>
+                <RadioButton x:Name="RadioBtn_I2C_Slave" Content="Slave" HorizontalAlignment="Left" Margin="165,6,0,0" VerticalAlignment="Top" Height="15" Width="60" Click="RadioBtn_I2C_Operation_Click"/>
+
+                <Grid x:Name="Grid_I2C_Master" Visibility ="Hidden" HorizontalAlignment="Left" Height="86" Margin="0,26,0,0" VerticalAlignment="Top" Width="437">
+                    <Label Content="I2C master baud:" HorizontalAlignment="Left" Margin="0,-3,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="ComboBox_I2C_Baud" HorizontalAlignment="Left" Height="23" Margin="111,0,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem Content="I2C_20KBITS"/>
+                        <ComboBoxItem Content="I2C_50KBITS"/>
+                        <ComboBoxItem Content="I2C_75KBITS"/>
+                        <ComboBoxItem Content="I2C_100KBITS"/>
+                        <ComboBoxItem Content="I2C_125KBITS"/>
+                        <ComboBoxItem Content="I2C_150KBITS"/>
+                        <ComboBoxItem Content="I2C_175KBITS"/>
+                        <ComboBoxItem Content="I2C_200KBITS"/>
+                        <ComboBoxItem Content="I2C_225KBITS"/>
+                        <ComboBoxItem Content="I2C_250KBITS"/>
+                        <ComboBoxItem Content="I2C_275KBITS"/>
+                        <ComboBoxItem Content="I2C_300KBITS"/>
+                        <ComboBoxItem Content="I2C_325KBITS"/>
+                        <ComboBoxItem Content="I2C_350KBITS"/>
+                        <ComboBoxItem Content="I2C_375KBITS"/>
+                        <ComboBoxItem Content="I2C_400KBITS"/>
+                    </ComboBox>
+                </Grid>
+                <Grid x:Name="Grid_I2C_Slave" HorizontalAlignment="Left" Height="86" Margin="0,26,0,0" VerticalAlignment="Top" Width="437">
+                    <TextBox x:Name="TextArea_I2C_SourceAddress" HorizontalAlignment="Left" Height="23" Margin="111,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" TextChanged="TextArea_SourceAddress_TextChanged"/>
+                    <Label Content="I2C Slave Address:" HorizontalAlignment="Left" Margin="0,-3,0,0" VerticalAlignment="Top"/>
+                </Grid>
+
+            </Grid>
+
+            <Grid x:Name="Grid_ProtocolContent_LIN" Visibility="Hidden" HorizontalAlignment="Left" Height="122" Margin="94,43,0,0" VerticalAlignment="Top" Width="563">
+                <Label Content="LIN baud:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27"/>
+                <ComboBox x:Name="ComboBox_LIN_Baudrate" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="110 BITS/S"/>
+                    <ComboBoxItem Content="150 BITS/S"/>
+                    <ComboBoxItem Content="300 BITS/S"/>
+                    <ComboBoxItem Content="1200 BITS/S"/>
+                    <ComboBoxItem Content="2400 BITS/S"/>
+                    <ComboBoxItem Content="4800 BITS/S"/>
+                    <ComboBoxItem Content="9600 BITS/S"/>
+                    <ComboBoxItem Content="19200 BITS/S"/>
+                    <ComboBoxItem Content="38400 BITS/S"/>
+                    <ComboBoxItem Content="57600 BITS/S"/>
+                    <ComboBoxItem Content="115200 BITS/S"/>
+                    <ComboBoxItem Content="230400 BITS/S"/>
+                    <ComboBoxItem Content="460800 BITS/S"/>
+                </ComboBox>
+
+                <Label Content="LIN Checksum:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="149,0,0,0"/>
+                <ComboBox x:Name="ComboBox_LIN_Checksum" HorizontalAlignment="Left" Margin="149,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="FLOW_CONTROL_OFF"/>
+                    <ComboBoxItem Content="RTS_CTS_HW_FLOW_CONTROL"/>
+                </ComboBox>
+
+                <Label Content="LIN Mode:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="306,0,0,0"/>
+                <ComboBox x:Name="ComboBox_LIN_Mode" HorizontalAlignment="Left" Margin="306,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="LIN SLAVE"/>
+                    <ComboBoxItem Content="LIN MASTER"/>
+                </ComboBox>
+
+                <Label Content="Stop bit:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="0,63,0,0"/>
+                <ComboBox x:Name="ComboBox_LIN_StopBit" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="ONE_STOP_BIT"/>
+                    <ComboBoxItem Content="ONE_FIVE_STOP_BITS"/>
+                    <ComboBoxItem Content="TWO_STOP_BITS_BOTH_VERIF"/>
+                    <ComboBoxItem Content="TWO_STOP_BITS_FIRST_VERIF"/>
+                </ComboBox>
+
+                <Label Content="Polarity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="149,63,0,0"/>
+                <ComboBox x:Name="ComboBox_LIN_Polarity" HorizontalAlignment="Left" Margin="149,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="NON_INVERTED"/>
+                    <ComboBoxItem Content="INVERTED"/>
+                </ComboBox>
+                <Label Content="Speed Mode" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="294,63,0,0"/>
+                <ComboBox x:Name="ComboBox_LIN_SpeedMode" HorizontalAlignment="Left" Margin="294,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="NORMAL_SPEED"/>
+                    <ComboBoxItem Content="HIGH_SPEED"/>
+                </ComboBox>
+
+            </Grid>
+            <Grid x:Name="Grid_ProtocolContent_RS232" Visibility="Hidden" HorizontalAlignment="Left" Height="122" Margin="94,43,0,0" VerticalAlignment="Top" Width="563">
+                <Label Content="RS232 baud:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27"/>
+                <ComboBox x:Name="ComboBox_RS232_Baudrate" HorizontalAlignment="Left" Margin="0,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="110 BITS/S"/>
+                    <ComboBoxItem Content="150 BITS/S"/>
+                    <ComboBoxItem Content="300 BITS/S"/>
+                    <ComboBoxItem Content="1200 BITS/S"/>
+                    <ComboBoxItem Content="2400 BITS/S"/>
+                    <ComboBoxItem Content="4800 BITS/S"/>
+                    <ComboBoxItem Content="9600 BITS/S"/>
+                    <ComboBoxItem Content="19200 BITS/S"/>
+                    <ComboBoxItem Content="38400 BITS/S"/>
+                    <ComboBoxItem Content="57600 BITS/S"/>
+                    <ComboBoxItem Content="115200 BITS/S"/>
+                    <ComboBoxItem Content="230400 BITS/S"/>
+                    <ComboBoxItem Content="460800 BITS/S"/>
+                </ComboBox>
+
+                <Label Content="HandshakeFlowControl" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="149,0,0,0"/>
+                <ComboBox x:Name="ComboBox_RS232_HFC" HorizontalAlignment="Left" Margin="149,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="FLOW_CONTROL_OFF"/>
+                    <ComboBoxItem Content="RTS_CTS_HW_FLOW_CONTROL"/>
+                </ComboBox>
+
+                <Label Content="Communication Mode" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="294,0,0,0"/>
+                <ComboBox x:Name="ComboBox_RS232_Mode" HorizontalAlignment="Left" Margin="294,27,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="ASYNC_8BIT"/>
+                    <ComboBoxItem Content="ASYNC_7BIT"/>
+                    <ComboBoxItem Content="ASYNC_8BIT_ODD"/>
+                    <ComboBoxItem Content="ASYNC_8BIT_EVEN"/>
+                    <ComboBoxItem Content="ASYNC_9BIT"/>
+                </ComboBox>
+
+                <Label Content="Stop bit" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="0,63,0,0"/>
+                <ComboBox x:Name="ComboBox_RS232_StopBit" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="ONE_STOP_BIT"/>
+                    <ComboBoxItem Content="ONE_FIVE_STOP_BITS"/>
+                    <ComboBoxItem Content="TWO_STOP_BITS_BOTH_VERIF"/>
+                    <ComboBoxItem Content="TWO_STOP_BITS_FIRST_VERIF"/>
+                </ComboBox>
+
+                <Label Content="Polarity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="149,63,0,0"/>
+                <ComboBox x:Name="ComboBox_RS232_Polarity" HorizontalAlignment="Left" Margin="149,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="NON_INVERTED"/>
+                    <ComboBoxItem Content="INVERTED"/>
+                </ComboBox>
+                <Label Content="Speed Mode" HorizontalAlignment="Left" VerticalAlignment="Top" Height="27" Margin="294,63,0,0"/>
+                <ComboBox x:Name="ComboBox_RS232_SpeedMode" HorizontalAlignment="Left" Margin="294,90,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="NORMAL_SPEED"/>
+                    <ComboBoxItem Content="HIGH_SPEED"/>
+                </ComboBox>
+            </Grid>
+            <Grid x:Name="Grid_LKTS_Area" Margin="10,170,10,0">
+                <DataGrid Name="DataGrid_LKTS" CanUserDeleteRows="True" AutoGenerateColumns="False" ItemsSource="{Binding}" Margin="10,58,7,63">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Source address" Binding="{Binding sourceAddress}" />
+                        <DataGridTextColumn x:Name="DataGrid_PIDBytes" Header="PID # bytes" Binding="{Binding LIN_PIDBytes}" />
+                        <DataGridTextColumn x:Name="DataGrid_PIDType" IsReadOnly="True" Header="PID Type" Binding="{Binding LIN_PIDTypeText}" />
+                        <DataGridTextColumn Header="Destination Protocol" IsReadOnly="True" Binding="{Binding destinationProtocolText}"/>
+                        <DataGridTextColumn Header="Destination address" Binding="{Binding destinationAddress}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBox x:Name="TextArea_SourceAddress" HorizontalAlignment="Left" Height="23" Margin="10,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" TextChanged="TextArea_SourceAddress_TextChanged"/>
+                <Label Content="Source address:" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
+                <Grid x:Name="Grid_LINSpecific" Margin="108,1,0,0" Height="57" VerticalAlignment="Top" HorizontalAlignment="Left" Width="207">
+                    <TextBox x:Name="TextArea_LIN_BytesOnPID" HorizontalAlignment="Left" Margin="2,29,0,0" TextWrapping="Wrap" Width="93" TextChanged="TextArea_SourceAddress_TextChanged" Height="23" VerticalAlignment="Top"/>
+                    <Label Content="PID # bytes" HorizontalAlignment="Left" Margin="2,3,0,0" VerticalAlignment="Top"/>
+                    <Label Content="PID Type" HorizontalAlignment="Left" Margin="100,3,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="ComboBox_LIN_PIDType" HorizontalAlignment="Left" Margin="100,29,0,0" VerticalAlignment="Top" Width="102">
+                        <ComboBoxItem Content="Publisher"/>
+                        <ComboBoxItem Content="Subscriber"/>
+                    </ComboBox>
+                </Grid>
+                <Grid x:Name="Grid_MovableItems_LKTS_Area" HorizontalAlignment="Left" Width="325" Margin="315,4,0,0" Height="54" VerticalAlignment="Top">
+                    <Label Content="Destination address:" Margin="118,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="130"/>
+                    <Label Content="Destination protocol:" Margin="-1,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"/>
+                    <ComboBox x:Name="ComboBox_DestinationProtocol" Margin="0,26,0,0" VerticalAlignment="Top" SelectionChanged="ComboBox_DestinationProtocol_SelectionChanged" HorizontalAlignment="Left" Width="113"/>
+                    <TextBox x:Name="TextArea_DestinationAddress" HorizontalAlignment="Left" Height="23" Margin="118,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" TextChanged="TextArea_SourceAddress_TextChanged"/>
+                    <Button x:Name="Button_Insert_LKT" Content="Insert" HorizontalAlignment="Left" Margin="240,26,0,0" VerticalAlignment="Top" Width="75" Click="Button_Insert_LKT_Click"/>
+                </Grid>
+                <CheckBox x:Name="CheckBox_LastCfg" Content="Last configuration" HorizontalAlignment="Left" Margin="280,172,0,35" Height="20" VerticalAlignment="Bottom"/>
+                <Button x:Name="Button_SendCfg" Content="Send Configuration" Margin="255,0,0,12" Height="23" VerticalAlignment="Bottom" FontWeight="Bold" FontStyle="Italic" Click="Button_SendCfg_Click" HorizontalAlignment="Left" Width="176"/>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
